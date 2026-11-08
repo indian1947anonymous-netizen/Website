@@ -4,8 +4,7 @@ services:
     runtime: node
     plan: free
     buildCommand: npm install && npm run build
-    preDeployCommand: npx drizzle-kit push --force
-    startCommand: npm run start
+    startCommand: npx drizzle-kit push --force && npm run start
     healthCheckPath: /
     envVars:
       - key: NODE_VERSION
