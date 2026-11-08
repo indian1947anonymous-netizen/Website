@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: sree-abhyasa-college
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    preDeployCommand: npx drizzle-kit push --force
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sree-abhyasa-db
+          property: connectionString
+
+databases:
+  - name: sree-abhyasa-db
+    plan: free
+    databaseName: abhyasa
+    user: abhyasa
+
